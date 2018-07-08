@@ -1,0 +1,25 @@
+Vue
+
+
+v-bind serve para manipular tags HTML por exemplo:
+v-bind:title:"eita nois";
+
+v-if criar condi��es.
+
+v-on:click quando clicar executa um evento
+
+v-model= acessa objetos.
+
+v-html =interpreta html
+
+v-once=aparece apenas uma vez e não é possivel mudar
+
+
+Metodo computado e metodo calculado.
+
+Método computado = utilizaçao normal. preencher formulario e submeter ele.
+
+
+Método calculado = Implementar solução quando está renderizando sua aplicação.
+
+observador =

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Introdução ao Vue JS</title>
+    <script src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+
+    <div class="" id="app">
+
+      <gui-titulo v-bind:titulo="meuTitulo"></gui-titulo>
+
+      <input v-model=meuTitulo>
+
+      <gui-tabela v-bind:titulos="['Título', 'Descrição']" v-bind:registros="registros"></gui-tabela>
+
+      <p v-once>{{meuTitulo}}</p>
+
+      <p>{{ 23.80989890 | TrataValor }} </p>
+
+      <ul>
+        <li v-for="registro in registros">
+          {{registro.titulo}} - {{registro.descricao}} - {{registro.valor | TrataValor}}
+        </li>
+      </ul>
+
+      <p>Total: (methods){{totalValorMetodo() | TrataValor}}</p>
+      <p>Total: (computed){{totalValorComputado | TrataValor}}</p>
+
+      <p>contaMethods: {{contaMethods}}</p>
+      <p>contaComputed: {{contaComputed}}</p>
+
+      <p>
+        <input type="text" v-model="nome" placeholder="Nome">
+      </p>
+      <p>Aterações: {{contaAlteracoes}}</p>
+
+    </div>
+
+
+    <script type="text/javascript">
+
+    Vue.component('gui-titulo',{
+      props:['titulo'],
+      template:'<h2>{{ titulo }}</h2>'
+    });
+
+    Vue.component('gui-tabela',{
+      props:['titulos','registros'],
+      template:'      <table style="width:100%">'+
+        '      <thead>'+
+        '        <tr>'+
+        '          <th v-for="titulo in titulos">{{titulo}}</th>'+
+        '        </tr>'+
+        '      </thead>'+
+        '      <tbody>'+
+        '        <tr v-for="registro in registros">'+
+        '          <td v-for="item in registro">{{item}}</td>'+
+        '        </tr>'+
+        '      </tbody>'+
+        '    </table>'
+    });
+
+    var app = new Vue({
+      el:"#app",
+      data:{
+        meuTitulo:'Esse é o titulo',
+        registros:[
+          {titulo:'Titulo 1', descricao:'descricao 1', link:'link1', valor:24.890809},
+          {titulo:'Titulo 2', descricao:'descricao 2', link:'link1', valor:22.890809},
+          {titulo:'Titulo 3', descricao:'descricao 2', link:'link1', valor:25.890809}
+        ],
+        contaMethods:0,
+        contaComputed:0,
+        nome:'',
+        contaAlteracoes:0
+      },
+      filters:{
+        TrataValor: function(valor){
+          return ('R$'+(23.988475235).toFixed(2)).replace('.',',');
+        }
+      },
+      methods:{
+        totalValorMetodo: function(){
+          //this.contaMethods ++;
+          var total = 0;
+          for(item of this.registros){
+            total += item.valor;
+          }
+          return total;
+        }
+      },
+      computed:{
+        totalValorComputado: function(){
+          this.contaComputed++;
+          var total = 0;
+          for(item of this.registros){
+            total += item.valor;
+          }
+          return total;
+        }
+      },
+      watch:{
+        nome:function(valor){
+          this.contaAlteracoes++;
+          this.nome = valor.toUpperCase();
+        }
+      }
+
+
+    })
+
+    </script>
+  </body>
+</html>
