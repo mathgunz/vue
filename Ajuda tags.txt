@@ -1,0 +1,41 @@
+Vue
+
+
+v-bind serve para manipular tags HTML por exemplo:
+v-bind:title:"eita nois";
+
+v-if criar condi��es.
+
+v-on:click quando clicar executa um evento
+
+
+
+# instala o vue-cli globalmente
+https://br.vuejs.org/v2/guide/installation.html
+$ npm install --global vue-cli
+# cria um novo projeto com o template "webpack"
+$ vue init webpack my-project
+# instala as dependências e executa!
+$ cd my-project
+$ npm run dev
+
+json-server = simula em servico web rest.
+
+vue-resource = utilizado para consumir servicos http.
+https://github.com/pagekit/vue-resource
+$ yarn add vue-resource
+$ npm install vue-resource
+
+vue-router
+link de instalacao:
+https://router.vuejs.org/installation.html#direct-download-cdn
+
+npm install vue-router
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+
+Vue.use(VueRouter)
+
+
+Framework para definir rotas decentemente
+https://router.vuejs.org/installation.html
